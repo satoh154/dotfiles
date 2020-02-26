@@ -6,3 +6,4 @@ set -x PATH /home/satoh/.cargo/bin $PATH
 set -x PATH /home/satoh/anaconda3/bin $PATH
 set -g theme_display_user no 
 set -g theme_display_hostname no
+alias nvim='/home/satoh/.local/bin/nvim.appimage'
