@@ -17,21 +17,27 @@ if dein#load_state('/home/satoh/.cache/dein')
   " Add or remove your plugins here like this:
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
-  call dein#add('Shougo/deoplete.vim')
+  call dein#add('Shougo/deoplete.nvim')
   call dein#add('scrooloose/nerdtree')
   call dein#add('rust-lang/rust.vim')
   call dein#add('cohama/lexima.vim')
   call dein#add('racer-rust/vim-racer')
   call dein#add('tomasr/molokai')
   call dein#add('deoplete-plugins/deoplete-jedi')
+  call dein#add('sebastianmarkow/deoplete-rust')
 
   let g:deoplete#auto_completion_start_length = 1
   let g:deoplete#enable_at_startup = 1
-  nnoremap <silent><C-e> :NERDTreeToggle<CR>
+
   let g:jedi#completions_enabled = 0
   let g:deoplete#sources#jedi#python_path = '/usr/bin/python3'
-  let g:racer_cmd = expand('~/.cargo/bin/racer')
+
   let g:rustfmt_autosave = 1
+  let g:deoplete#sources#rust#racer_binary='/home/satoh/.cargo/bin/racer'
+  let g:deoplete#sources#rust#rust_source_path='/home/satoh/.source/rust/src'
+  set completeopt-=preview
+
+  nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
   " Required:
   call dein#end()
