@@ -26,18 +26,26 @@ if dein#load_state('/home/satoh/.cache/dein')
   call dein#add('deoplete-plugins/deoplete-jedi')
   call dein#add('sebastianmarkow/deoplete-rust')
 
-  let g:deoplete#auto_completion_start_length = 1
+  " deoplete option
   let g:deoplete#enable_at_startup = 1
+  let g:deoplete#auto_complete_delay = 0
+  let g:deoplete#auto_complete_start_length = 1
+  let g:deoplete#enable_camel_case = 0
+  let g:deoplete#enable_ignore_case = 0
+  let g:deoplete#enable_refresh_always = 0
+  let g:deoplete#enable_smart_case = 1
+  let g:deoplete#file#enable_buffer_path = 1
+  let g:deoplete#max_list = 10000
+  set completeopt-=preview
 
+  " python suboption 
   let g:jedi#completions_enabled = 0
   let g:deoplete#sources#jedi#python_path = '/usr/bin/python3'
 
+  " rust suboption
   let g:rustfmt_autosave = 1
   let g:deoplete#sources#rust#racer_binary='/home/satoh/.cargo/bin/racer'
   let g:deoplete#sources#rust#rust_source_path='/home/satoh/.source/rust/src'
-  set completeopt-=preview
-
-  nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
   " Required:
   call dein#end()
@@ -51,6 +59,7 @@ syntax enable
 " End dein Scripts-------------------------
 " Normal Setting-------------------------------
 
+" color scheme
 autocmd ColorScheme * highlight Normal ctermbg=none
 autocmd ColorScheme * highlight LineNr ctermbg=none
 colorscheme molokai
@@ -92,3 +101,15 @@ set cursorline
 hi clear CursorLine 
 set visualbell t_vb=
 set noerrorbells
+
+" キーマッピング
+nnoremap s <Nop>
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap sh <C-w>h
+nnoremap sJ <C-w>J
+nnoremap sK <C-w>K
+nnoremap sL <C-w>L
+nnoremap sH <C-w>H
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
