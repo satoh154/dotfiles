@@ -21,20 +21,14 @@ if dein#load_state('/home/satoh/.cache/dein')
   call dein#add('scrooloose/nerdtree')
   call dein#add('rust-lang/rust.vim')
   call dein#add('cohama/lexima.vim')
-  call dein#add('racer-rust/vim-racer')
   call dein#add('tomasr/molokai')
   call dein#add('deoplete-plugins/deoplete-jedi')
-  call dein#add('sebastianmarkow/deoplete-rust')
+  call dein#add('numirias/semshi')
 
   " deoplete option
   let g:deoplete#enable_at_startup = 1
-  let g:deoplete#auto_complete_delay = 0
   let g:deoplete#auto_complete_start_length = 1
-  let g:deoplete#enable_camel_case = 0
-  let g:deoplete#enable_ignore_case = 0
-  let g:deoplete#enable_refresh_always = 0
-  let g:deoplete#enable_smart_case = 1
-  let g:deoplete#file#enable_buffer_path = 1
+  let g:deoplete#check_stderr = 0
   let g:deoplete#max_list = 10000
   set completeopt-=preview
 
@@ -44,8 +38,7 @@ if dein#load_state('/home/satoh/.cache/dein')
 
   " rust suboption
   let g:rustfmt_autosave = 1
-  let g:deoplete#sources#rust#racer_binary='/home/satoh/.cargo/bin/racer'
-  let g:deoplete#sources#rust#rust_source_path='/home/satoh/.source/rust/src'
+  let g:deoplete#sources#rust#documentation_max_height=20
 
   " Required:
   call dein#end()
