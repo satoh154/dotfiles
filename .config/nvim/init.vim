@@ -24,6 +24,10 @@ if dein#load_state('/home/satoh/.cache/dein')
   call dein#add('tomasr/molokai')
   call dein#add('deoplete-plugins/deoplete-jedi')
   call dein#add('numirias/semshi')
+  call dein#add('autozimu/LanguageClient-neovim', {
+     \ 'rev': 'next',
+     \ 'build': 'bash install.sh',
+     \ })
 
   " deoplete option
   let g:deoplete#enable_at_startup = 1
@@ -40,6 +44,20 @@ if dein#load_state('/home/satoh/.cache/dein')
   let g:rustfmt_autosave = 1
   let g:deoplete#sources#rust#documentation_max_height=20
 
+  " LSP option
+  set hidden
+  let g:LanguageClient_serverCommands = {
+   \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', 'rls'],
+   \ }
+
+  augroup LanguageClient_config
+  autocmd!
+  autocmd User LanguageClientStarted setlocal signcolumn=yes
+  autocmd User LanguageClientStopped setlocal signcolumn=auto
+  augroup END
+  
+  let g:LanguageClient_autoStart = 1
+
   " Required:
   call dein#end()
   call dein#save_state()
@@ -50,7 +68,6 @@ filetype plugin indent on
 syntax enable
 
 " End dein Scripts-------------------------
-" Normal Setting-------------------------------
 
 " color scheme
 autocmd ColorScheme * highlight Normal ctermbg=none
