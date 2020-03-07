@@ -18,11 +18,13 @@ if dein#load_state('/home/satoh/.cache/dein')
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
   call dein#add('Shougo/deoplete.nvim')
+  call dein#add('vim-airline/vim-airline')
+  call dein#add('vim-airline/vim-airline-themes')
   call dein#add('scrooloose/nerdtree')
   call dein#add('rust-lang/rust.vim')
   call dein#add('cohama/lexima.vim')
   call dein#add('tomasr/molokai')
-  call dein#add('deoplete-plugins/deoplete-jedi')
+  "call dein#add('deoplete-plugins/deoplete-jedi')
   call dein#add('numirias/semshi')
   call dein#add('autozimu/LanguageClient-neovim', {
      \ 'rev': 'next',
@@ -36,7 +38,7 @@ if dein#load_state('/home/satoh/.cache/dein')
 
   " python suboption 
   let g:jedi#completions_enabled = 0
-  let g:deoplete#sources#jedi#python_path = '/usr/bin/python3'
+  "let g:deoplete#sources#jedi#python_path = '/usr/bin/python3'
 
   " rust suboption
   let g:rustfmt_autosave = 1
@@ -45,6 +47,7 @@ if dein#load_state('/home/satoh/.cache/dein')
   set hidden
   let g:LanguageClient_serverCommands = {
    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', 'rls'],
+   \ 'python': ['~/.local/bin/pyls'],
    \ }
   
   augroup LanguageClient_config
@@ -74,6 +77,7 @@ syntax enable
 autocmd ColorScheme * highlight Normal ctermbg=none
 autocmd ColorScheme * highlight LineNr ctermbg=none
 colorscheme molokai
+let g:airline_theme = 'minimalist'
 
 " 自動実行系
 autocmd BufRead * highlight LineNr ctermfg=8      
@@ -112,6 +116,7 @@ set cursorline
 hi clear CursorLine 
 set visualbell t_vb=
 set noerrorbells
+let g:airline#extensions#tabline#enabled=1
 
 " キーマッピング
 nnoremap s <Nop>
