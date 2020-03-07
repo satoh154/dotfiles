@@ -32,8 +32,6 @@ if dein#load_state('/home/satoh/.cache/dein')
   " deoplete option
   let g:deoplete#enable_at_startup = 1
   let g:deoplete#auto_complete_start_length = 1
-  let g:deoplete#check_stderr = 0
-  let g:deoplete#max_list = 10000
   set completeopt-=preview
 
   " python suboption 
@@ -42,21 +40,24 @@ if dein#load_state('/home/satoh/.cache/dein')
 
   " rust suboption
   let g:rustfmt_autosave = 1
-  let g:deoplete#sources#rust#documentation_max_height=20
 
   " LSP option
   set hidden
   let g:LanguageClient_serverCommands = {
    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', 'rls'],
    \ }
-
-  augroup LanguageClient_config
-  autocmd!
-  autocmd User LanguageClientStarted setlocal signcolumn=yes
-  autocmd User LanguageClientStopped setlocal signcolumn=auto
-  augroup END
   
+  augroup LanguageClient_config
+    autocmd!
+    autocmd User LanguageClientStarted setlocal signcolumn=no
+    autocmd User LanguageClientStopped setlocal signcolumn=no
+  augroup END
+
   let g:LanguageClient_autoStart = 1
+  let g:LanguageClient_loadSettings = 1
+  let g:LanguageClient_hasSnippetSupport = 0
+
+  set completefunc=LanguageClient#complete
 
   " Required:
   call dein#end()
@@ -122,4 +123,6 @@ nnoremap sJ <C-w>J
 nnoremap sK <C-w>K
 nnoremap sL <C-w>L
 nnoremap sH <C-w>H
+nnoremap sm gt
+nnoremap sn gT
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
