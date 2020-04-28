@@ -17,50 +17,13 @@ if dein#load_state('/home/satoh/.cache/dein')
   " Add or remove your plugins here like this:
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
-  call dein#add('Shougo/deoplete.nvim')
   call dein#add('vim-airline/vim-airline')
   call dein#add('vim-airline/vim-airline-themes')
   call dein#add('scrooloose/nerdtree')
-  call dein#add('rust-lang/rust.vim')
   call dein#add('cohama/lexima.vim')
   call dein#add('tomasr/molokai')
-  "call dein#add('deoplete-plugins/deoplete-jedi')
   call dein#add('numirias/semshi')
-  call dein#add('autozimu/LanguageClient-neovim', {
-     \ 'rev': 'next',
-     \ 'build': 'bash install.sh',
-     \ })
-
-  " deoplete option
-  let g:deoplete#enable_at_startup = 1
-  let g:deoplete#auto_complete_start_length = 1
-  set completeopt-=preview
-
-  " python suboption 
-  let g:jedi#completions_enabled = 0
-  "let g:deoplete#sources#jedi#python_path = '/usr/bin/python3'
-
-  " rust suboption
-  let g:rustfmt_autosave = 1
-
-  " LSP option
-  set hidden
-  let g:LanguageClient_serverCommands = {
-   \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', 'rls'],
-   \ 'python': ['~/.local/bin/pyls'],
-   \ }
-  
-  augroup LanguageClient_config
-    autocmd!
-    autocmd User LanguageClientStarted setlocal signcolumn=no
-    autocmd User LanguageClientStopped setlocal signcolumn=no
-  augroup END
-
-  let g:LanguageClient_autoStart = 1
-  let g:LanguageClient_loadSettings = 1
-  let g:LanguageClient_hasSnippetSupport = 0
-
-  set completefunc=LanguageClient#complete
+  call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'release'})
 
   " Required:
   call dein#end()
@@ -73,23 +36,30 @@ syntax enable
 
 " End dein Scripts-------------------------
 
+" setting for coc.nvim
+set hidden
+set nobackup
+set nowritebackup
+set cmdheight=2
+set signcolumn=yes
+
 " color scheme
 autocmd ColorScheme * highlight Normal ctermbg=none
 autocmd ColorScheme * highlight LineNr ctermbg=none
 colorscheme molokai
 let g:airline_theme = 'minimalist'
 
-" 自動実行系
+" load file 
 autocmd BufRead * highlight LineNr ctermfg=8      
 autocmd BufNewfile * highlight LineNr ctermfg=8 
 
-" 文字コード関係
+" txt code 
 set fileencodings=ucs-boms,utf-8,euc-jp,cp932
 set fileformats=unix,dos,mac 
 set ambiwidth=double 
 set noswapfile
 
-" タブ・インデント関係
+" tab and indent 
 set expandtab 
 set tabstop=4 
 set softtabstop=4 
@@ -97,20 +67,20 @@ set autoindent
 set smartindent 
 set shiftwidth=4 
 
-" 文字列検索
+" search 
 set incsearch 
 set ignorecase 
 set smartcase 
 set hlsearch 
 
-" カーソル関係
+" cursore 
 set whichwrap=b,s,h,l,<,>,[,],~ 
 nnoremap j gj
 nnoremap k gk
 nnoremap <down> gj
 nnoremap <up> gk
 
-" インジケーター関係
+" indicator 
 set number 
 set cursorline
 hi clear CursorLine 
@@ -118,7 +88,7 @@ set visualbell t_vb=
 set noerrorbells
 let g:airline#extensions#tabline#enabled=1
 
-" キーマッピング
+" key mapping 
 nnoremap s <Nop>
 nnoremap sj <C-w>j
 nnoremap sk <C-w>k
