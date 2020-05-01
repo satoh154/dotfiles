@@ -24,6 +24,9 @@ if dein#load_state('/home/satoh/.cache/dein')
   call dein#add('tomasr/molokai')
   call dein#add('numirias/semshi')
   call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'release'})
+  call dein#add('cjrh/vim-conda')
+  call dein#add('thinca/vim-quickrun')
+  call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 
   " Required:
   call dein#end()
@@ -36,12 +39,36 @@ syntax enable
 
 " End dein Scripts-------------------------
 
+" setting for vim-conda
+" require pynvim module for each env
+let g:python_host_prog='/home/satoh/anaconda3/envs/py2/bin/python'
+let g:python3_host_prog='/home/satoh/anaconda3/bin/python'
+python import vim
+nnoremap <F3> :CondaChangeEnv<CR>
+let g:conda_startup_msg_suppress = 1
+
+" setting for vim-quickrun
+let g:quickrun_config = get(g:, 'quickrun_config', {})
+let g:quickrun_config._ = {
+    \ "runner/vimproc/updatetime" : 80,
+    \ "outputter/buffer/split" : ":rightbelow 8sp",
+    \ "outputter/error/error" : "quickfix",
+    \ "outputter/error/success" : "buffer",
+    \ "outputter" : "error",
+    \ "runner" : "vimproc",
+    \}
+au FileType qf nnoremap <silent><buffer>q :quit<CR>
+let g:quickrun_no_default_key_mappings = 1
+nnoremap \r :write<CR>:QuickRun -mode n<CR>        
+xnoremap \r :<C-U>write<CR>gv:QuickRun -mode v<CR>
+
 " setting for coc.nvim
 set hidden
 set nobackup
 set nowritebackup
 set cmdheight=2
 set signcolumn=yes
+nnoremap <F4> :CocCommand python.setInterpreter<CR>
 
 " color scheme
 autocmd ColorScheme * highlight Normal ctermbg=none
