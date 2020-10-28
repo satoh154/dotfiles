@@ -1,7 +1,7 @@
 set -x LC_ALL en_US.utf8
 set -x LANG en_US.utf8
 set -x LIBGL_ALWAYS_INDIRECT 1 $LIBGL_ALWAYS_INDIRECT
-set -x DISPLAY :0
+set -x DISPLAY (cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0.0 $DISPLAY
 set -x PATH /home/satoh/anaconda3/bin $PATH
 set -g theme_display_user no 
 set -g theme_display_hostname no
