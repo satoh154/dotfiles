@@ -41,7 +41,6 @@ syntax enable
 
 " setting for vim-conda
 " require pynvim module for each env
-let g:python_host_prog='/home/satoh/anaconda3/envs/py2/bin/python'
 let g:python3_host_prog='/home/satoh/anaconda3/bin/python'
 python import vim
 nnoremap <F3> :CondaChangeEnv<CR>
