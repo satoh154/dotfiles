@@ -23,6 +23,8 @@ if dein#load_state('/home/satoh/.cache/dein')
   call dein#add('cohama/lexima.vim')
   call dein#add('tomasr/molokai')
   call dein#add('numirias/semshi')
+  call dein#add('vlime/vlime', {'rtp': 'vim/'})
+  call dein#add('bhurlow/vim-parinfer')
   " call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'release'})
   call dein#add('neoclide/coc.nvim', {'branch': 'release'})
   call dein#add('cjrh/vim-conda')
@@ -39,6 +41,19 @@ filetype plugin indent on
 syntax enable
 
 " End dein Scripts-------------------------
+
+" setting for vlime
+let g:vlime_cl_impl = "ros"
+function! VlimeBuildServerCommandFor_ros(vlime_loader, vlime_eval)
+    return ["ros", "run",
+                \ "--load", a:vlime_loader,
+                \ "--eval", a:vlime_eval]
+endfunction
+let g:vlime_window_settings = {
+                \ "sldb": {"pos": "belowright", "vertical": v:true},
+                \ "inspector": {"pos": "belowright", "size": v:null, "vertical": v:true},
+                \ "preview": {"pos": "belowright", "size": v:null, "vertical": v:true}
+            \ }
 
 " setting for vim-conda
 " require pynvim module for each env
