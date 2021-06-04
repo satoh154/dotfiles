@@ -1,5 +1,6 @@
 {
     "suggest.noselect": true,
     "suggest.preferCompleteThanJumpPlaceholder": true,
-    "python.jediEnabled": false
+    "python.jediEnabled": false,
+    "coc.preferences.formatOnSaveFiletypes": ["rust"]
 }

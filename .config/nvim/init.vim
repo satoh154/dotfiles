@@ -30,6 +30,7 @@ if dein#load_state('/home/satoh/.cache/dein')
   call dein#add('cjrh/vim-conda')
   call dein#add('thinca/vim-quickrun')
   call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
+  call dein#add('rust-lang/rust.vim')
 
   " Required:
   call dein#end()
@@ -72,12 +73,13 @@ let g:quickrun_config._ = {
     \ "outputter/error/error" : "quickfix",
     \ "outputter/error/success" : "buffer",
     \ "outputter" : "error",
-    \ "runner" : "vimproc",
+    \ "runner" : "vimproc"
     \}
 au FileType qf nnoremap <silent><buffer>q :quit<CR>
 let g:quickrun_no_default_key_mappings = 1
 nnoremap \r :write<CR>:QuickRun -mode n<CR>        
 xnoremap \r :<C-U>write<CR>gv:QuickRun -mode v<CR>
+autocmd BufNewFile,BufRead *.rs  let g:quickrun_config.rust = {'exec' : 'cargo run'}
 
 " setting for coc.nvim
 set hidden
